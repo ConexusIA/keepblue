@@ -11,392 +11,275 @@
         /* --- Reset y Estilos Base --- */
         :root {
             --color-blue: #073e60;
+            --color-blue-light-hover: #0a5a8a; /* Azul más claro para hover */
             --color-black: #1a1a1a;
             --color-white: #ffffff;
             --color-light-gray: #f4f8fa;
             --color-gray: #5a6268;
             --font-primary: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            /* Ajustado para header con logo de 60px y padding 15px arriba/abajo */
-            scroll-padding-top: 90px;
+            scroll-padding-top: 95px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-primary);
-            color: var(--color-black);
-            line-height: 1.7;
-            background-color: var(--color-white);
-        }
-
-        h1, h2, h3, h4 {
-            color: var(--color-blue);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-primary); color: var(--color-black); line-height: 1.7; background-color: var(--color-white); }
+        h1, h2, h3, h4 { color: var(--color-blue); margin-bottom: 1rem; font-weight: 600; }
         h1 { font-size: 2.8rem; line-height: 1.2; }
         h2 { font-size: 2.2rem; margin-bottom: 1.5rem; }
         h3 { font-size: 1.8rem; }
         h4 { font-size: 1.3rem; color: var(--color-blue); }
-
-        p {
-            margin-bottom: 1.2rem;
-            color: var(--color-gray);
-        }
-
-        a {
-            color: var(--color-blue);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: #0a5a8a;
-        }
-
-        section {
-            padding: 80px 5%;
-            overflow: hidden;
-        }
-        /* Alternar colores de fondo para secciones de casos */
-        #mar-aral, #lago-chad { background-color: var(--color-light-gray); }
-        #pacifico-basura { background-color: var(--color-white); }
-
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+        h5 { font-size: 1.1rem; color: var(--color-black); margin-bottom: 0.3rem; font-weight: 600; }
+        p { margin-bottom: 1.2rem; color: var(--color-gray); }
+        a { color: var(--color-blue); text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: var(--color-blue-light-hover); }
+        section { padding: 80px 5%; overflow: hidden; }
+        #mar-aral, #lago-chad, #mes-libro, #water-commitment { background-color: var(--color-light-gray); }
+        #pacifico-basura, #conciencia { background-color: var(--color-white); }
+        .container { max-width: 1100px; margin: 0 auto; }
 
         /* --- Header --- */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.97);
-            backdrop-filter: blur(6px);
-            /* Mantenemos padding vertical aunque el logo sea más grande */
-            padding: 15px 5%;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center; /* Centrará verticalmente el logo más grande */
-            /* Altura efectiva será ~90px (15 + 60 + 15) */
-        }
-
-        #logo {
-            height: 65px; /* Logo más grande */
-            width: auto;
-            display: block; /* Ayuda con alineación vertical */
-        }
+        header { position: fixed; top: 0; left: 0; width: 100%; background-color: rgba(255, 255, 255, 0.97); backdrop-filter: blur(6px); padding: 15px 5%; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); z-index: 1000; display: flex; justify-content: space-between; align-items: center; }
+        #logo { height: 65px; width: auto; display: block; }
+        /* Ticker Día del Agua en Header */
+        #water-day-ticker { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; color: var(--color-blue); font-weight: 500; font-size: 0.9rem; margin-left: 20px; text-align: right; flex-grow: 1; }
 
         /* --- Hero Section --- */
-        #hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background-color: var(--color-light-gray);
-            padding-top: 90px; /* Espacio para el header fijo */
-        }
-
-        #hero h1 {
-            margin-bottom: 0.5rem;
-            animation: fadeInDown 1s ease-out;
-        }
-
+        #hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background-color: var(--color-light-gray); padding-top: 95px; }
+        #hero h1 { margin-bottom: 0.5rem; animation: fadeInDown 1s ease-out; }
         #hero h1 .keep-text { color: var(--color-black); }
         #hero h1 .blue-text { color: var(--color-blue); }
+        #hero .lema { font-size: 1.5rem; color: var(--color-gray); margin-bottom: 2rem; font-weight: 300; animation: fadeInUp 1s 0.3s ease-out backwards; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .scroll-down { position: absolute; bottom: 30px; font-size: 2.5rem; color: var(--color-blue); cursor: pointer; animation: bounce 2s infinite ease-out; }
 
-        #hero .lema {
-            font-size: 1.5rem;
-            color: var(--color-gray);
-            margin-bottom: 2rem;
-            font-weight: 300;
-            animation: fadeInUp 1s 0.3s ease-out backwards;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+        /* Banner Día del Agua en Hero - Estilo Mejorado */
+        #water-day-banner {
+            display: none; opacity: 0; transition: opacity 0.8s ease-in-out;
+            background-color: var(--color-blue); /* Fondo azul principal */
+            color: var(--color-white); /* Texto blanco */
+            padding: 25px 5%; /* Más padding vertical */
+            text-align: center;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3); /* Borde blanco semitransparente */
+            width: 100%; position: absolute; top: 95px; left: 0; z-index: 999;
         }
-
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            font-size: 2.5rem;
-            color: var(--color-blue);
+        #water-day-banner h3 {
+            margin-bottom: 0.7rem;
+            font-size: 1.5rem; /* Ligeramente más grande */
+            color: var(--color-white); /* Asegurar color blanco */
+        }
+        #water-day-banner p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem; /* Ligeramente más grande */
+            color: rgba(255, 255, 255, 0.9); /* Blanco ligeramente menos intenso */
+        }
+        .water-day-button { /* Botón DENTRO del banner */
+            display: inline-block;
+            background-color: var(--color-white); /* Fondo blanco */
+            color: var(--color-blue); /* Texto azul */
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+            border: none;
             cursor: pointer;
-            animation: bounce 2s infinite ease-out;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+        .water-day-button:hover {
+            background-color: var(--color-light-gray); /* Gris claro al pasar */
+            color: var(--color-blue-light-hover);
+            transform: translateY(-2px);
+        }
+        /* Ajuste padding Hero cuando banner está activo */
+        body.water-day-active #hero {
+            padding-top: calc(95px + 180px); /* header + banner height approx (aumentado por padding) + margen */
+        }
+
 
         /* --- Misión Section --- */
-        #mision {
-            background-color: var(--color-white);
-            text-align: center;
-        }
-         #mision h2 {
-             margin-bottom: 0.8rem;
-         }
-         #mision .subtitle {
-             font-size: 1.1rem;
-             color: var(--color-gray);
-             margin-bottom: 2.5rem;
-             font-weight: 300;
-             max-width: 750px;
-             margin-left: auto;
-             margin-right: auto;
-         }
-         /* Texto principal revisado */
-         #mision p:not(.subtitle) {
-             max-width: 800px;
-             margin-left: auto;
-             margin-right: auto;
-         }
-
-        .icon-row {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 3rem;
-            gap: 20px;
-        }
-
-        .icon-item {
-            flex-basis: 200px;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
+        #mision { background-color: var(--color-white); text-align: center; }
+        #mision h2 { margin-bottom: 0.8rem; }
+        #mision .subtitle { font-size: 1.1rem; color: var(--color-gray); margin-bottom: 2.5rem; font-weight: 300; max-width: 750px; margin-left: auto; margin-right: auto; }
+        #mision p:not(.subtitle) { max-width: 800px; margin-left: auto; margin-right: auto; }
+        .icon-row { display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 3rem; gap: 20px; }
+        .icon-item { flex-basis: 200px; text-align: center; opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s ease-out forwards; }
         .icon-item:nth-child(1) { animation-delay: 0.2s; }
         .icon-item:nth-child(2) { animation-delay: 0.4s; }
         .icon-item:nth-child(3) { animation-delay: 0.6s; }
         .icon-item:nth-child(4) { animation-delay: 0.8s; }
+        .icon-item i { font-size: 3rem; color: var(--color-blue); margin-bottom: 1rem; display: block; transition: transform 0.3s ease; }
+        .icon-item:hover i { transform: scale(1.15) rotate(5deg); }
+        .icon-item h4 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .icon-item p { font-size: 0.9rem; color: var(--color-gray); }
 
-        .icon-item i {
-            font-size: 3rem;
+        /* --- Secciones de Casos de Estudio --- */
+        .case-study .container { display: flex; flex-wrap: wrap; align-items: center; gap: 40px; }
+        .case-study .text-content { flex: 1; min-width: 300px; opacity: 0; transform: translateX(-30px); animation: fadeInLeft 1s ease-out forwards; animation-delay: 0.2s; }
+        .case-study .icon-content { flex-basis: 150px; text-align: center; opacity: 0; transform: translateX(30px); animation: fadeInRight 1s ease-out forwards; animation-delay: 0.4s; }
+        .case-study .icon-content i { font-size: 8rem; color: var(--color-blue); opacity: 0.6; }
+
+        /* --- Sección Compromiso Día del Agua --- */
+        #water-commitment { display: none; opacity: 0; transition: opacity 0.8s ease-in-out; text-align: center; }
+        #water-commitment h2 { margin-bottom: 1rem; }
+        #water-commitment p { max-width: 700px; margin-left: auto; margin-right: auto; margin-bottom: 2.5rem; }
+        #commitment-options { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 2rem; }
+        /* Estilo Mejorado para Botones de Compromiso */
+        .commitment-option {
+            background-color: var(--color-blue); /* Fondo azul */
+            color: var(--color-white); /* Texto blanco */
+            border: none; /* Sin borde */
+            padding: 14px 28px; /* Más padding */
+            border-radius: 50px;
+            font-weight: 600; /* Más grueso */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra sutil */
+        }
+        .commitment-option:hover {
+            background-color: var(--color-blue-light-hover); /* Azul más claro */
+            transform: translateY(-3px); /* Elevación */
+        }
+	/* Contenedor del Mensaje de Agradecimiento (Centrado) */
+	#commitment-thanks {
+            display: none; /* Oculto por defecto */
+            max-width: 600px; /* Opcional: Limita el ancho en pantallas grandes */
+            margin: 30px auto 0; /* 30px arriba, auto horizontal, 0 abajo */
+            /* text-align: center; /* Ya no es estrictamente necesario aquí si el 'p' lo tiene, pero no daña */
+        }
+        /* Párrafo del Mensaje de Agradecimiento (Animado y Centrado) */
+	#commitment-thanks p {
             color: var(--color-blue);
-            margin-bottom: 1rem;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .icon-item:hover i {
-            transform: scale(1.15) rotate(5deg);
-        }
-
-        .icon-item h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-        .icon-item p {
-            font-size: 0.9rem;
-            color: var(--color-gray);
-        }
-
-        /* --- Secciones de Casos de Estudio (Aral, Pacífico, Chad) --- */
-        .case-study .container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 40px;
-        }
-        /* Aplicar animación a todas las secciones de caso */
-        .case-study .text-content {
-            flex: 1;
-            min-width: 300px;
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin: 0;
             opacity: 0;
-            transform: translateX(-30px);
-            animation: fadeInLeft 1s ease-out forwards;
-            animation-delay: 0.2s;
-        }
-        .case-study .icon-content {
-            flex-basis: 150px;
-            text-align: center;
-            opacity: 0;
-            transform: translateX(30px);
-            animation: fadeInRight 1s ease-out forwards;
-            animation-delay: 0.4s;
-        }
-        /* Estilo común para iconos de casos */
-        .case-study .icon-content i {
-            font-size: 8rem;
-            color: var(--color-blue);
-            opacity: 0.6;
+            transform: translateY(15px);
+            text-align: center; /* Asegura el centrado del texto dentro del párrafo */
+            /* La clase 'visible' aplicará la animación */
+          }
+         /* Clase para activar animación del mensaje */
+        #commitment-thanks p.visible {
+            animation: fadeInUpThanks 0.6s ease-out forwards;
         }
 
+
+        /* --- Sección Mes del Libro --- */
+        #mes-libro { display: none; opacity: 0; transition: opacity 0.8s ease-in-out; }
+        #mes-libro h2 { text-align: center; }
+        #mes-libro .subtitle { font-size: 1.1rem; color: var(--color-gray); margin-bottom: 3rem; font-weight: 300; max-width: 750px; margin-left: auto; margin-right: auto; text-align: center; }
+        .book-recommendations { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .book-item { background-color: var(--color-white); padding: 25px; border-radius: 8px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05); display: flex; flex-direction: column; }
+        .book-item i { font-size: 1.8rem; color: var(--color-blue); margin-bottom: 1rem; }
+        .book-item h5 { margin-bottom: 0.3rem; }
+        .book-item .author { font-size: 0.9rem; font-style: italic; color: var(--color-gray); margin-bottom: 0.8rem; }
+        .book-item p:not(.author) { font-size: 0.95rem; flex-grow: 1; margin-bottom: 1rem; }
+        .book-item .category { font-size: 0.85rem; font-weight: 600; color: var(--color-blue); margin-top: auto; }
 
         /* --- Sección de Concienciación Ampliada --- */
-        #conciencia {
-            background-color: var(--color-white); /* Fondo blanco para esta sección */
-        }
-
-        #conciencia h2 {
-            text-align: center;
-            margin-bottom: 3rem; /* Más espacio debajo del título */
-        }
-
-        .awareness-point {
-            display: flex;
-            align-items: flex-start;
-            gap: 25px;
-            margin-bottom: 3rem; /* Más espacio entre puntos */
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease-out forwards;
-            max-width: 900px; /* Limitar ancho para mejor lectura */
-            margin-left: auto;
-            margin-right: auto;
-        }
-        /* Animación escalonada para todos los puntos */
+        #conciencia { /* Fondo blanco */ }
+        #conciencia h2 { text-align: center; margin-bottom: 3rem; }
+        .awareness-point { display: flex; align-items: flex-start; gap: 25px; margin-bottom: 3rem; opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s ease-out forwards; max-width: 900px; margin-left: auto; margin-right: auto; }
         .awareness-point:nth-of-type(1) { animation-delay: 0.2s; }
         .awareness-point:nth-of-type(2) { animation-delay: 0.3s; }
         .awareness-point:nth-of-type(3) { animation-delay: 0.4s; }
         .awareness-point:nth-of-type(4) { animation-delay: 0.5s; }
-        .awareness-point:nth-of-type(5) { animation-delay: 0.6s; } /* Nuevo */
-        .awareness-point:nth-of-type(6) { animation-delay: 0.7s; } /* Nuevo */
-
-
-        .awareness-point i {
-            font-size: 2.5rem;
-            color: var(--color-blue);
-            margin-top: 5px;
-            flex-shrink: 0;
-            width: 40px;
-            text-align: center;
-        }
-         .awareness-point div {
-             flex: 1; /* Ocupar espacio restante */
-         }
-
-        .awareness-point h4 {
-            margin-bottom: 0.5rem;
-        }
+        .awareness-point:nth-of-type(5) { animation-delay: 0.6s; }
+        .awareness-point:nth-of-type(6) { animation-delay: 0.7s; }
+        .awareness-point i { font-size: 2.5rem; color: var(--color-blue); margin-top: 5px; flex-shrink: 0; width: 40px; text-align: center; }
+        .awareness-point div { flex: 1; }
+        .awareness-point h4 { margin-bottom: 0.5rem; }
 
         /* --- Footer --- */
-        footer {
-            background-color: var(--color-blue);
-            color: var(--color-white);
-            padding: 60px 5% 40px;
-            text-align: center;
-        }
+        footer { background-color: var(--color-blue); color: var(--color-white); padding: 60px 5% 40px; text-align: center; }
+        footer h2 { color: var(--color-white); font-size: 1.8rem; margin-bottom: 1.5rem; }
+        footer p { color: rgba(255, 255, 255, 0.85); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .footer-action { display: inline-block; background-color: var(--color-white); color: var(--color-blue); padding: 12px 35px; border-radius: 50px; font-weight: 600; transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; margin-bottom: 2.5rem; }
+        .footer-action:hover { background-color: var(--color-light-gray); color: var(--color-blue); transform: translateY(-3px); }
+        .footer-copy { margin-top: 2rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.6); border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 1.5rem; }
 
-        footer h2 {
-            color: var(--color-white);
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        footer p {
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .footer-action {
-            display: inline-block;
-            background-color: var(--color-white);
-            color: var(--color-blue);
-            padding: 12px 35px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-            margin-bottom: 2.5rem;
-        }
-
-        .footer-action:hover {
-            background-color: var(--color-light-gray);
-            color: var(--color-blue);
-            transform: translateY(-3px);
-        }
-
-        .footer-copy {
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            padding-top: 1.5rem;
-        }
-
-        /* --- Animaciones Keyframes (sin cambios) --- */
+        /* --- Animaciones Keyframes --- */
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
         @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-15px); } 60% { transform: translateY(-8px); } }
+        /* Animación para el texto de agradecimiento */
+        @keyframes fadeInUpThanks {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        /* --- Media Queries (Responsividad - Ajustes para logo y casos) --- */
+         /* Clase Helper para ocultar */
+         .hidden { display: none !important; }
+
+        /* --- Media Queries --- */
         @media (max-width: 768px) {
             h1 { font-size: 2.2rem; }
             h2 { font-size: 1.8rem; }
             section { padding: 60px 5%; }
             header { padding: 10px 5%; }
-            #logo { height: 50px; } /* Reducir logo en medianas */
-            :root { scroll-padding-top: 70px; } /* Recalcular para header */
-
-
+            #logo { height: 50px; }
+            :root { scroll-padding-top: 70px; }
             #hero { padding-top: 70px; min-height: 80vh; }
             #hero .lema { font-size: 1.3rem; }
-
             .icon-row { justify-content: center; }
             .icon-item { flex-basis: 45%; margin-bottom: 25px; }
-
-            /* Casos de estudio en móvil */
-             .case-study .container { flex-direction: column; text-align: center; }
-             .case-study .icon-content { margin-top: 20px; flex-basis: auto; }
-             .case-study .icon-content i { font-size: 6rem; }
-             .case-study .text-content, .case-study .icon-content {
-                 transform: none; /* Reset transforms */
-                 animation: fadeInUp 1s ease-out forwards; /* Usar fadeInUp en móvil */
-             }
-             .case-study .text-content { animation-delay: 0.1s; }
-             .case-study .icon-content { animation-delay: 0.3s; }
-
-             .awareness-point { flex-direction: column; align-items: center; text-align: center; gap: 15px; }
-             .awareness-point i { margin-top: 0; margin-bottom: 10px; }
+            .case-study .container { flex-direction: column; text-align: center; }
+            .case-study .icon-content { margin-top: 20px; flex-basis: auto; }
+            .case-study .icon-content i { font-size: 6rem; }
+            .case-study .text-content, .case-study .icon-content { transform: none; animation: fadeInUp 1s ease-out forwards; }
+            .case-study .text-content { animation-delay: 0.1s; }
+            .case-study .icon-content { animation-delay: 0.3s; }
+            .awareness-point { flex-direction: column; align-items: center; text-align: center; gap: 15px; }
+            .awareness-point i { margin-top: 0; margin-bottom: 10px; }
+            .book-recommendations { grid-template-columns: 1fr; }
+            #water-day-ticker { font-size: 0.75rem; margin-left: 10px; }
+            #water-day-banner { top: 70px; padding: 20px 5%; }
+            #water-day-banner h3 { font-size: 1.3rem; }
+            #water-day-banner p { font-size: 1rem; }
+            body.water-day-active #hero { padding-top: calc(70px + 190px); /* Ajustar padding hero en tablet */ }
+            #commitment-options { flex-direction: column; align-items: center; }
+            .commitment-option { width: 80%; text-align: center; padding: 12px 20px; } /* Menos padding */
+            #commitment-thanks p { font-size: 1.1rem; }
         }
-
-         @media (max-width: 480px) {
-             h1 { font-size: 1.8rem; }
-             h2 { font-size: 1.6rem; }
-             header { padding: 10px 4%; }
-             #logo { height: 45px; } /* Logo más pequeño en móviles */
-             :root { scroll-padding-top: 65px; } /* Recalcular para header */
-             #hero { padding-top: 65px; }
-
-             section { padding: 40px 5%; }
-             .icon-item { flex-basis: 80%; }
-             footer h2 { font-size: 1.5rem; }
-             .case-study .icon-content i { font-size: 5rem; } /* Icono de caso más pequeño */
-         }
-
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.6rem; }
+            header { padding: 10px 4%; }
+            #logo { height: 45px; }
+            :root { scroll-padding-top: 65px; }
+            #hero { padding-top: 65px; }
+            section { padding: 40px 5%; }
+            .icon-item { flex-basis: 80%; }
+            footer h2 { font-size: 1.5rem; }
+            .case-study .icon-content i { font-size: 5rem; }
+            #water-day-ticker { display: none; }
+            #water-day-banner { top: 65px; padding: 15px 5%; }
+            #water-day-banner h3 { font-size: 1.2rem; }
+            #water-day-banner p { font-size: 0.9rem; }
+             .water-day-button { padding: 10px 25px; font-size: 0.9rem;}
+            body.water-day-active #hero { padding-top: calc(65px + 170px); /* Ajustar padding hero en móvil */ }
+             .commitment-option { width: 90%; padding: 12px 15px; font-size: 0.9rem;}
+             #commitment-thanks p { font-size: 1rem; }
+        }
     </style>
 </head>
-<body>
+<body > <!-- La clase water-day-active se añadirá con JS -->
 
     <header>
         <img src="keepblue.png" alt="KeepBlue Logo" id="logo">
-        <!-- Navegación (opcional) -->
+        <!-- Ticker Día del Agua (se mostrará con JS si es la fecha) -->
+        <span id="water-day-ticker">🌊 22 de marzo: Día Mundial del Agua – KeepBlue contigo, gota a gota.</span>
     </header>
 
     <!-- Hero Section -->
     <section id="hero">
-        <div class="container">
+        <!-- Banner Día del Agua (se mostrará con JS si es la fecha) -->
+        <div id="water-day-banner">
+            <h3>💧 Hoy celebramos el Día Mundial del Agua</h3>
+            <p>Una gota no hace el mar, pero sí la diferencia. Explora cómo tú también puedes marcarla.</p>
+            <button class="water-day-button" id="commit-button">Mi compromiso con el agua</button>
+        </div>
+
+         <div class="container">
             <h1>
                 <span class="keep-text">Keep</span><span class="blue-text">Blue</span>
             </h1>
@@ -409,31 +292,15 @@
 
     <!-- Misión Section -->
     <section id="mision">
-        <div class="container">
-            <h2>Nuestra Misión: Despertar la Conciencia Azul</h2>
+         <div class="container">
+            <h2>Nuestra Misión: Fomentar la Conciencia Del Agua.</h2>
             <p class="subtitle">En KeepBlue creemos firmemente en el poder de la información compartida a través de esta plataforma. Nuestro objetivo es iluminar la importancia vital de nuestros ecosistemas acuáticos y la urgente necesidad de comprender nuestra relación con ellos.</p>
             <p>Queremos que este sitio sea una ventana a la realidad de nuestros mares, ríos y lagos; un espacio digital para entender las amenazas que enfrentan, explorando casos como la trágica historia del Mar de Aral, y reflexionar sobre cómo nuestras acciones y omisiones impactan estos frágiles entornos. No organizamos actividades fuera de esta web; nuestra labor aquí es **informar, educar y generar una profunda conciencia** que inspire un cambio de perspectiva individual y colectiva, utilizando únicamente el contenido que aquí presentamos.</p>
             <div class="icon-row">
-                <div class="icon-item">
-                    <i class="fas fa-eye"></i>
-                    <h4>Visibilizar</h4>
-                    <p>Mostramos aquí la belleza y fragilidad de los ecosistemas acuáticos.</p>
-                </div>
-                <div class="icon-item">
-                    <i class="fas fa-book-open"></i>
-                    <h4>Educar</h4>
-                    <p>Compartimos en esta web conocimiento sobre los retos y consecuencias.</p>
-                </div>
-                 <div class="icon-item">
-                     <i class="fas fa-lightbulb"></i>
-                     <h4>Inspirar</h4>
-                    <p>Buscamos generar reflexión a través de la información presentada.</p>
-                </div>
-                <div class="icon-item">
-                    <i class="fas fa-broadcast-tower"></i>
-                    <h4>Amplificar</h4>
-                    <p>Difundimos estas historias y datos para una mayor conciencia.</p>
-                </div>
+                <div class="icon-item"><i class="fas fa-eye"></i><h4>Visibilizar</h4><p>Mostramos aquí la belleza y fragilidad de los ecosistemas acuáticos.</p></div>
+                <div class="icon-item"><i class="fas fa-book-open"></i><h4>Educar</h4><p>Compartimos en esta web conocimiento sobre los retos y consecuencias.</p></div>
+                <div class="icon-item"><i class="fas fa-lightbulb"></i><h4>Inspirar</h4><p>Buscamos generar reflexión a través de la información presentada.</p></div>
+                <div class="icon-item"><i class="fas fa-broadcast-tower"></i><h4>Amplificar</h4><p>Difundimos estas historias y datos para una mayor conciencia.</p></div>
             </div>
         </div>
     </section>
@@ -446,13 +313,11 @@
                 <p>El Mar de Aral, que llegó a ser el cuarto lago más grande del planeta, es hoy un desolador testimonio presentado aquí de cómo la mala gestión humana puede aniquilar un ecosistema. La desviación de los ríos Amu Daria y Sir Daria para riego transformó un mar interior lleno de vida en un desierto tóxico.</p>
                 <p>La pérdida de agua no solo destruyó la pesca local, sino que también expuso el lecho marino cargado de sal y pesticidas. El viento transporta estas partículas, causando problemas de salud y contaminando áreas lejanas. El Aral, cuya historia exploramos en esta web, es un recordatorio de que el agua es finita y las decisiones sin visión ecológica tienen consecuencias catastróficas.</p>
             </div>
-            <div class="icon-content">
-                 <i class="fas fa-wind"></i>
-            </div>
+            <div class="icon-content"><i class="fas fa-wind"></i></div>
         </div>
     </section>
 
-    <!-- Nuevo Caso: Pacífico Basura -->
+    <!-- Pacífico Basura Section -->
     <section id="pacifico-basura" class="case-study">
         <div class="container">
              <div class="text-content">
@@ -460,13 +325,11 @@
                 <p>Lejos de ser una isla sólida, la Gran Mancha de Basura del Pacífico es una vasta extensión oceánica donde las corrientes (giros) han concentrado millones de toneladas de desechos plásticos. Se estima que cubre un área tres veces el tamaño de Francia, compuesta principalmente por microplásticos apenas visibles.</p>
                 <p>Este plástico persistente es ingerido por la vida marina, desde el plancton hasta las ballenas, introduciéndose en la cadena alimentaria. Además, actúa como esponja para otros contaminantes tóxicos y facilita el transporte de especies invasoras. Es una muestra impactante, que presentamos aquí, de cómo nuestros residuos, incluso los generados a miles de kilómetros, convergen y dañan el corazón del océano.</p>
             </div>
-            <div class="icon-content">
-                 <i class="fas fa-trash-alt"></i>
-            </div>
+            <div class="icon-content"><i class="fas fa-trash-alt"></i></div>
         </div>
     </section>
 
-    <!-- Nuevo Caso: Lago Chad -->
+    <!-- Lago Chad Section -->
     <section id="lago-chad" class="case-study">
         <div class="container">
              <div class="text-content">
@@ -474,65 +337,69 @@
                 <p>El Lago Chad, ubicado en la región del Sahel africano, ha perdido aproximadamente el 90% de su superficie desde la década de 1960. Aunque la variabilidad climática y las sequías han jugado un papel, la principal causa ha sido la extracción insostenible de agua de los ríos que lo alimentan para proyectos de riego a gran escala.</p>
                 <p>La desaparición del lago, un recurso vital para millones de personas en Chad, Níger, Nigeria y Camerún, ha exacerbado la pobreza, provocado conflictos por los recursos restantes y forzado migraciones masivas. La historia del Lago Chad, que destacamos en KeepBlue, es otro ejemplo alarmante de cómo la competencia por el agua dulce, combinada con el cambio climático, puede desestabilizar regiones enteras.</p>
             </div>
-            <div class="icon-content">
-                 <i class="fas fa-tint-slash"></i> <!-- Icono de gota tachada -->
-            </div>
+            <div class="icon-content"><i class="fas fa-tint-slash"></i></div>
         </div>
     </section>
 
-    <!-- Sección de Concienciación Ampliada -->
-    <section id="conciencia">
+    <!-- ====================================== -->
+    <!-- == SECCIÓN COMPROMISO DÍA DEL AGUA  == -->
+    <!-- ====================================== -->
+    <section id="water-commitment">
         <div class="container">
-             <h2>Comprender para Proteger: Datos Clave Presentados Aquí</h2>
+            <h2><i class="fas fa-hand-holding-water"></i> Mi Gota de Compromiso</h2>
+            <p>Pequeñas acciones diarias suman un gran impacto. Elige un compromiso que puedas cumplir para cuidar este recurso vital. ¡Cada gesto cuenta!</p>
 
-             <div class="awareness-point">
-                 <i class="fas fa-globe-americas"></i>
-                 <div>
-                     <h4>El Agua Dulce: Un Bien Escaso y Desigual</h4>
-                     <p>Menos del 1% del agua del planeta es dulce y accesible. Este recurso vital se distribuye de forma desigual, y miles de millones de personas ya enfrentan escasez. La agricultura consume cerca del 70% del agua dulce extraída globalmente.</p>
-                 </div>
-             </div>
-
-             <div class="awareness-point">
-                <i class="fas fa-recycle"></i>
-                 <div>
-                     <h4>La Invasión Silenciosa del Plástico</h4>
-                     <p>Se estima que para 2050 podría haber más plástico que peces en el océano (por peso). Los microplásticos, fragmentos diminutos, ya se encuentran en todas partes, desde las fosas marinas más profundas hasta el aire que respiramos y el agua que bebemos.</p>
-                 </div>
-             </div>
-
-             <div class="awareness-point">
-                <i class="fas fa-link"></i>
-                 <div>
-                     <h4>Todo Está Conectado: De la Cuenca al Mar</h4>
-                     <p>La contaminación en un río (fertilizantes, químicos, plásticos) viaja inevitablemente hacia el océano, afectando estuarios, costas y mar abierto. La deforestación en las cuencas puede aumentar la sedimentación y dañar arrecifes de coral a kilómetros de distancia.</p>
-                 </div>
-             </div>
-
-             <div class="awareness-point">
-                <i class="fas fa-temperature-high"></i> <!-- Nuevo icono -->
-                 <div>
-                     <h4>Acidificación Oceánica: El Otro Problema del CO2</h4>
-                     <p>Los océanos absorben aproximadamente una cuarta parte del dióxido de carbono (CO2) que emitimos, lo que altera su química y los vuelve más ácidos. Esto dificulta que organismos como corales, moluscos y plancton construyan sus conchas y esqueletos, amenazando la base de la cadena alimentaria marina.</p>
-                 </div>
-             </div>
-
-             <div class="awareness-point">
-                <i class="fas fa-skull-crossbones"></i> <!-- Nuevo icono -->
-                 <div>
-                     <h4>Zonas Muertas: Desiertos Submarinos</h4>
-                     <p>El exceso de nutrientes (nitrógeno y fósforo), principalmente de la agricultura y aguas residuales, que llegan a los mares provoca la proliferación masiva de algas. Al morir y descomponerse, estas algas consumen el oxígeno del agua, creando "zonas muertas" (hipoxia) donde la mayoría de la vida marina no puede sobrevivir.</p>
-                 </div>
-             </div>
-
-             <div class="awareness-point">
-                <i class="fas fa-user-cog"></i>
-                <div>
-                    <h4>El Poder de la Información Compartida Aquí</h4>
-                    <p>Entender estos problemas a través de la información que ofrecemos en KeepBlue nos empodera para tomar decisiones más conscientes en nuestro día a día. Elegir reducir, reutilizar y reciclar, consumir de forma responsable y, sobre todo, compartir este conocimiento, son pasos clave hacia un futuro más azul.</p>
-                </div>
+            <div id="commitment-options">
+                <button class="commitment-option">💧 Cerraré la llave mientras me cepillo.</button>
+                <button class="commitment-option">🔧 Revisaré si tengo fugas en casa.</button>
+                <button class="commitment-option">🚿 Tomaré duchas más cortas.</button>
+                <button class="commitment-option">🗣️ Compartiré este sitio con alguien más.</button>
+                <button class="commitment-option">🌱 Regaré mis plantas temprano o tarde.</button>
             </div>
 
+            <!-- Mensaje de agradecimiento (inicialmente oculto) -->
+            <div id="commitment-thanks">
+                <p>¡Gracias por tu compromiso! 🙌<br>Juntos hacemos la diferencia.</p>
+            </div>
+        </div>
+    </section>
+     <!-- ====================================== -->
+    <!-- == FIN SECCIÓN COMPROMISO           == -->
+    <!-- ====================================== -->
+
+
+    <!-- ================================= -->
+    <!-- == SECCIÓN MES DEL LIBRO (MAYO) == -->
+    <!-- ================================= -->
+    <section id="mes-libro">
+        <div class="container">
+            <h2><i class="fas fa-book-reader"></i> Mayo: Mes del Libro en Uruguay y el Agua en la Literatura</h2>
+            <p class="subtitle">Celebrando el Mes Nacional del Libro en Uruguay, exploramos cómo la literatura nos acerca a la esencia del agua, sus misterios y los desafíos que enfrenta. Aquí te recomendamos algunas lecturas que navegan estas aguas, desde cuentos para los más chicos hasta reflexiones profundas.</p>
+            <div class="book-recommendations">
+                <div class="book-item"><i class="fas fa-book-open"></i><h5>Cuando desapareció el mar</h5><p class="author">Autor: Francisco Sánchez y Bárbara Sansó</p><p>Narra la historia del Mar de Aral y su transformación en desierto a través de la conversación entre un niño y su padre, explicando el impacto del desvío de ríos para el cultivo de algodón. Combina información real con elementos oníricos.</p><p class="category">A partir de 8 años</p></div>
+                <div class="book-item"><i class="fas fa-search"></i><h5>Crick y el Misterio del Estanque</h5><p class="author">Autor: Inmaculada Ruiz Rivas</p><p>Una fantasía infantil donde el detective Crick investiga por qué desaparece el agua de un estanque, ayudado por hormigas inteligentes. Introduce la importancia del cuidado del agua.</p><p class="category">Infantil</p></div>
+                <div class="book-item"><i class="fas fa-shield-alt"></i><h5>La tortuguita y el mar</h5><p class="author">Autor: Becky Davies y Jennie Poh</p><p>Sigue a una pequeña tortuga amante del océano que descubre la contaminación por plásticos en su hogar. Sensibiliza sobre la polución marina y la protección de los océanos.</p><p class="category">A partir de 4 años</p></div>
+                <div class="book-item"><i class="fas fa-landmark"></i><h5>Memorias ahogadas</h5><p class="author">Autor: Jairo Marcos y María Ángeles Fernández</p><p>Recopila historias sobre embalses en España que inundaron pueblos, destacando las consecuencias políticas y personales. Ofrece perspectiva sobre cómo las decisiones hídricas afectan a las comunidades.</p><p class="category">Adultos</p></div>
+                <div class="book-item"><i class="fas fa-chart-line"></i><h5>Lago Chad: qué se esconde tras la crisis de sus aguas</h5><p class="author">Autor: Silvia Alejandra Perazzo</p><p>Artículo académico que analiza la crisis del Lago Chad desde una perspectiva hidrosocial, considerando factores ambientales, sociales y políticos. Lectura técnica para una comprensión profunda.</p><p class="category">Adultos / Académico</p></div>
+                <div class="book-item"><i class="fas fa-water"></i><h5>El mar que nos rodea</h5><p class="author">Autor: Rachel Carson</p><p>Un clásico de la literatura ambiental que analiza el origen de los océanos, su papel primordial en el planeta y la interconexión entre los ecosistemas marinos y la vida terrestre.</p><p class="category">Adultos / Clásico / Ensayo</p></div>
+            </div>
+        </div>
+    </section>
+    <!-- ================================= -->
+    <!-- == FIN SECCIÓN MES DEL LIBRO    == -->
+    <!-- ================================= -->
+
+
+    <!-- Sección de Concienciación Ampliada -->
+    <section id="conciencia">
+         <div class="container">
+             <h2>Comprender para Proteger: Datos Clave Presentados Aquí</h2>
+             <div class="awareness-point"><i class="fas fa-globe-americas"></i><div><h4>El Agua Dulce: Un Bien Escaso y Desigual</h4><p>Menos del 1% del agua del planeta es dulce y accesible. Este recurso vital se distribuye de forma desigual, y miles de millones de personas ya enfrentan escasez. La agricultura consume cerca del 70% del agua dulce extraída globalmente.</p></div></div>
+             <div class="awareness-point"><i class="fas fa-recycle"></i><div><h4>La Invasión Silenciosa del Plástico</h4><p>Se estima que para 2050 podría haber más plástico que peces en el océano (por peso). Los microplásticos, fragmentos diminutos, ya se encuentran en todas partes, desde las fosas marinas más profundas hasta el aire que respiramos y el agua que bebemos.</p></div></div>
+             <div class="awareness-point"><i class="fas fa-link"></i><div><h4>Todo Está Conectado: De la Cuenca al Mar</h4><p>La contaminación en un río (fertilizantes, químicos, plásticos) viaja inevitablemente hacia el océano, afectando estuarios, costas y mar abierto. La deforestación en las cuencas puede aumentar la sedimentación y dañar arrecifes de coral a kilómetros de distancia.</p></div></div>
+             <div class="awareness-point"><i class="fas fa-temperature-high"></i><div><h4>Acidificación Oceánica: El Otro Problema del CO2</h4><p>Los océanos absorben aproximadamente una cuarta parte del dióxido de carbono (CO2) que emitimos, lo que altera su química y los vuelve más ácidos. Esto dificulta que organismos como corales, moluscos y plancton construyan sus conchas y esqueletos, amenazando la base de la cadena alimentaria marina.</p></div></div>
+             <div class="awareness-point"><i class="fas fa-skull-crossbones"></i><div><h4>Zonas Muertas: Desiertos Submarinos</h4><p>El exceso de nutrientes (nitrógeno y fósforo), principalmente de la agricultura y aguas residuales, que llegan a los mares provoca la proliferación masiva de algas. Al morir y descomponerse, estas algas consumen el oxígeno del agua, creando "zonas muertas" (hipoxia) donde la mayoría de la vida marina no puede sobrevivir.</p></div></div>
+             <div class="awareness-point"><i class="fas fa-user-cog"></i><div><h4>El Poder de la Información Compartida Aquí</h4><p>Entender estos problemas a través de la información que ofrecemos en KeepBlue nos empodera para tomar decisiones más conscientes en nuestro día a día. Elegir reducir, reutilizar y reciclar, consumir de forma responsable y, sobre todo, compartir este conocimiento, son pasos clave hacia un futuro más azul.</p></div></div>
         </div>
     </section>
 
@@ -548,19 +415,17 @@
         </div>
     </footer>
 
-    <script>
-        // Script para actualizar el año en el footer
+        <script>
+        // --- Script para actualizar el año en el footer ---
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Script opcional para smooth scroll (ya incluido en navegador para # enlaces)
+        // --- Script opcional para smooth scroll (botones genéricos) ---
         const scrollDownButton = document.querySelector('.scroll-down');
         if (scrollDownButton) {
             scrollDownButton.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetSection = document.getElementById('mision');
-                if (targetSection) {
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
-                }
+                if (targetSection) { targetSection.scrollIntoView({ behavior: 'smooth' }); }
             });
         }
          const footerAction = document.querySelector('.footer-action');
@@ -568,13 +433,80 @@
              footerAction.addEventListener('click', (e) => {
                  e.preventDefault();
                  const targetSection = document.getElementById('mision');
-                 if (targetSection) {
-                     targetSection.scrollIntoView({ behavior: 'smooth' });
-                 }
+                 if (targetSection) { targetSection.scrollIntoView({ behavior: 'smooth' }); }
              });
          }
 
-        // Animaciones al cargar (ya funcionan con CSS)
+        // --- Funciones y Lógica para Contenido Temporal (Día del Agua, Mes Libro) ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const hoy = new Date();
+            const currentMonth = hoy.getMonth(); // 0 = Enero, 2 = Marzo, 4 = Mayo
+            const currentDay = hoy.getDate();
+
+            // --- Lógica para el Mes del Libro (Mayo) ---
+            const seccionLibro = document.getElementById('mes-libro');
+            if (currentMonth === 4 && seccionLibro) { // 4 es Mayo
+                seccionLibro.style.display = 'block';
+                setTimeout(() => { seccionLibro.style.opacity = '1'; }, 50);
+            }
+
+            // --- Lógica para el Día Mundial del Agua (22-24 Marzo) ---
+            const waterDayBanner = document.getElementById('water-day-banner');
+            const waterDayTicker = document.getElementById('water-day-ticker');
+            const waterCommitmentSection = document.getElementById('water-commitment');
+            const commitButton = document.getElementById('commit-button'); // Botón del banner
+            const commitmentOptionsDiv = document.getElementById('commitment-options');
+            const commitmentThanksDiv = document.getElementById('commitment-thanks');
+            const commitmentThanksP = document.querySelector('#commitment-thanks p'); // Párrafo del mensaje
+            const commitmentButtons = document.querySelectorAll('.commitment-option'); // Botones de compromiso
+
+            // Función para verificar si estamos en el período del Día del Agua
+            function isWorldWaterDayPeriod(month, day) {
+                // ¡CORRECCIÓN! Usamos la lógica de fecha real.
+                return month === 2 && day >= 22 && day <= 24; // Marzo (2), días 22, 23, 24
+                // La línea 'return true;' ha sido eliminada o comentada correctamente.
+            }
+
+            // Solo ejecuta el código del Día del Agua si la fecha coincide
+            if (isWorldWaterDayPeriod(currentMonth, currentDay)) {
+                document.body.classList.add('water-day-active');
+
+                // Mostrar elementos del Día del Agua con fade-in
+                if (waterDayBanner) {
+                    waterDayBanner.style.display = 'block';
+                    setTimeout(() => { waterDayBanner.style.opacity = '1'; }, 50);
+                }
+                if (waterDayTicker) {
+                    waterDayTicker.style.display = 'inline';
+                    setTimeout(() => { waterDayTicker.style.opacity = '1'; }, 50);
+                }
+                 if (waterCommitmentSection) {
+                    waterCommitmentSection.style.display = 'block';
+                    setTimeout(() => { waterCommitmentSection.style.opacity = '1'; }, 50);
+                }
+
+                // Smooth scroll desde el botón del banner a la sección de compromiso
+                if (commitButton && waterCommitmentSection) {
+                    commitButton.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        waterCommitmentSection.scrollIntoView({ behavior: 'smooth' });
+                    });
+                }
+
+                // Lógica para los botones de compromiso y mensaje animado
+                if (commitmentButtons.length > 0 && commitmentOptionsDiv && commitmentThanksDiv && commitmentThanksP) {
+                    commitmentButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            commitmentOptionsDiv.classList.add('hidden'); // Oculta los botones
+                            commitmentThanksDiv.style.display = 'block'; // Muestra contenedor del mensaje
+                            commitmentThanksP.classList.add('visible'); // Añade clase para animar el párrafo
+                        });
+                    });
+                }
+            }
+            // No hay 'else' porque los elementos están ocultos por CSS por defecto.
+        });
+
     </script>
 
 </body>
